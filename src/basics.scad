@@ -9,10 +9,10 @@ inputZLevel = 2;
 paramsIsoBaseBoxX = 841;
 paramsIsoBaseBoxY = 1189;
 paramsBaseBoxZ = 26;
-paramsWallLength = 2;
+paramsWallLength = 3.5;
 paramsRoundedH = 7.5;
-paramsStackShapeZ = 1;
-paramsStackShapeRounded = 2;
+paramsStackShapeZ = 2.15;
+paramsStackShapeAngle = 45;
 
 
 echo("==== ABox - configuration ====");
@@ -22,7 +22,7 @@ echo(str("paramsBaseBoxZ=", paramsBaseBoxZ));
 echo(str("paramsWallLength=", paramsWallLength));
 echo(str("paramsRoundedH=", paramsRoundedH));
 echo(str("paramsStackShapeZ=", paramsStackShapeZ));
-echo(str("paramsStackShapeRounded=", paramsStackShapeRounded));
+echo(str("paramsStackShapeAngle=", paramsStackShapeAngle));
 
 use <tools/roundedCube.scad>
 
@@ -52,14 +52,19 @@ module isoCube(base, z) {
           boxX - (2 * paramsWallLength),
           boxY - (2 * paramsWallLength),
           paramsStackShapeZ,
-          paramsRoundedH - paramsWallLength,
-          angle=45,
+          paramsRoundedH > paramsWallLength ? paramsRoundedH - paramsWallLength : 0.1,
+          angle=paramsStackShapeAngle,
           reversed = true
         );
       }
     }
     translate([paramsWallLength, paramsWallLength, paramsStackShapeZ + paramsWallLength]) {
-      roundedCube(boxX - paramsWallLength * 2, boxY - paramsWallLength * 2, boxZ - paramsStackShapeZ, paramsRoundedH);
+      roundedCube(
+        boxX - paramsWallLength * 2,
+        boxY - paramsWallLength * 2,
+        boxZ - paramsStackShapeZ,
+        paramsRoundedH > paramsWallLength ? paramsRoundedH - paramsWallLength : 0.1
+      );
     }
   }
 
@@ -88,6 +93,6 @@ module stackedSimulation() {
   }
 }
 
-linearSimulation();
+// linearSimulation();
 // stackedSimulation();
-// isoCube(8, 1);
+isoCube(9, 1);
