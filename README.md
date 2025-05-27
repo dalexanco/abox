@@ -21,6 +21,17 @@ This project is a parametric model designed to generate printable boxes based on
 2. Generate the model.
 3. Print the model using your 3D printer.
 
+## Todo list
+
+- [ ] Build tools to split code and easy upload to platforms ?
+- [ ] Lit model
+- [ ] Latch model
+- [ ] Insert model
+- [ ] Basket mode (no lit but holes on sides)
+- [ ] Public makerworld page
+- [ ] Public thingverse page
+- [ ] Github page generator
+
 ## Contributing
 
 Contributions are welcome! Please fork the repository and submit a pull request with your changes.
